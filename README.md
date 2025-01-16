@@ -1,8 +1,8 @@
 <div align="center">
 
-<img src="assets/logo.svg" alt="InOrbit Logo" width="150" height="150" />
+<img src="assets/logo.svg" alt="pocket-api Logo" width="150" height="150" />
 
-# InOrbit
+# pocket-api
 
 A modern TypeScript backend application powered by Fastify and PostgreSQL.
 
@@ -21,6 +21,8 @@ A modern TypeScript backend application powered by Fastify and PostgreSQL.
 - **Docker Ready**: Containerized setup for consistent development and deployment
 - **Developer Experience**: Configured with Biome for linting and formatting
 - **ID Generation**: Utilizes CUID2 for unique identifier generation
+- **Date Handling**: Efficient date manipulation with Day.js
+- **Database Seeding**: Built-in seeding functionality for development and testing
 
 ## 📦 Prerequisites
 
@@ -33,8 +35,8 @@ A modern TypeScript backend application powered by Fastify and PostgreSQL.
 1. Clone the repository:
 
 ```bash
-git clone https://github.com/yourusername/inorbit.git
-cd inorbit
+git clone https://github.com/rafaumeu/pocket-api.git
+cd pocket-api
 ```
 
 2. Install dependencies:
@@ -61,7 +63,13 @@ cp .env.example .env
 yarn migration:run
 ```
 
-6. Start the development server:
+6. Seed the database (optional):
+
+```bash
+yarn seed
+```
+
+7. Start the development server:
 
 ```bash
 yarn dev
@@ -70,14 +78,19 @@ yarn dev
 ## 🏗️ Project Structure
 
 ```
-inorbit/
+pocket-api/
+├── assets/         # Project-related assets
 ├── src/
-│   ├── db/           # Database configuration and schemas
-│   ├── http/         # HTTP server and route handlers
-│   └── env.ts        # Environment variable configuration
-├── .migrations/      # Database migration files
+│   ├── db/        # Database configuration and schemas
+│   │   ├── index.ts  # Database initialization
+│   │   ├── schema.ts # Database schema definitions
+│   │   └── seed.ts   # Database seeding functionality
+│   ├── http/      # HTTP server and route handlers
+│   └── env.ts     # Environment variable configuration
+├── .migrations/   # Database migration files
+├── logs.txt      # Application logs
 ├── drizzle.config.ts # Drizzle ORM configuration
-├── biome.json       # Biome linting and formatting config
+├── biome.json    # Biome linting and formatting config
 └── docker-compose.yml
 ```
 
@@ -108,15 +121,21 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 - We use Biome for code formatting and linting
 - Database migrations are tracked in the `.migrations/` directory
 - VSCode settings are configured for optimal development experience
+- Database seeding is available for development and testing environments
+- Day.js is used for consistent date manipulation across the application
 
 ## 🔧 Environment Variables
 
 ```env
-DATABASE_URL=postgresql://user:password@localhost:5432/inorbit
+DATABASE_URL=postgresql://user:password@localhost:5432/pocket-api
 PORT=3000
 ```
 
 ---
+
+<div align="center">
+Made with ❤️ by Rafael Dias Zendron
+</div>
 
 <div align="center">
 <img src="https://github.com/rafaumeu.png" width="100" height="100" style="border-radius: 50%;">
