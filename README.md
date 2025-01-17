@@ -29,15 +29,17 @@ A modern TypeScript backend application powered by Fastify and PostgreSQL.
 ![TypeScript](https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript&logoColor=white)
 ![Docker](https://img.shields.io/badge/Docker-2CA5E0?style=for-the-badge&logo=docker&logoColor=white)
 ![PostgreSQL](https://img.shields.io/badge/PostgreSQL-316192?style=for-the-badge&logo=postgresql&logoColor=white)
+![Fastify](https://img.shields.io/badge/Fastify-202020?style=for-the-badge&logo=fastify&logoColor=white)
 
 ---
 
 ### 🛠 Development Tools
 
-![Fastify](https://img.shields.io/badge/fastify-202020?style=for-the-badge&logo=fastify&logoColor=white)
 ![Drizzle](https://img.shields.io/badge/Drizzle_ORM-4053D6?style=for-the-badge&logo=data:image/svg+xml;base64,PHN2Z)
 ![Zod](https://img.shields.io/badge/Zod-3E67B1?style=for-the-badge&logo=zod&logoColor=white)
 ![Biome](https://img.shields.io/badge/Biome-60A5FA?style=for-the-badge&logo=biome&logoColor=white)
+![Day.js](https://img.shields.io/badge/Day.js-F6C915?style=for-the-badge&logo=javascript&logoColor=black)
+![CUID2](https://img.shields.io/badge/CUID2-4053D6?style=for-the-badge&logo=uniqueid&logoColor=white)
 
 ---
 </div>
@@ -54,6 +56,8 @@ A modern TypeScript backend application powered by Fastify and PostgreSQL.
 - **Database Seeding**: Built-in seeding functionality for development and testing
 - **Schema Validation**: Request/Response validation with Zod and JSON Schema generation
 - **Goals Management**: Complete system for creating and tracking goals with completion status
+- **CORS Support**: Enabled with `@fastify/cors` for cross-origin requests
+- **Pending Goals and Summaries**: Retrieve and summarize goals for the current week
 
 ---
 
@@ -72,8 +76,8 @@ A modern TypeScript backend application powered by Fastify and PostgreSQL.
 1. Clone the repository:
 
 ```bash
-git clone https://github.com/rafaumeu/inorbit.git
-cd inorbit
+git clone https://github.com/rafaumeu/pocket-api.git
+cd pocket-api
 ```
 
 2. Install dependencies:
@@ -120,7 +124,8 @@ yarn dev
 
 - `POST /goals` - Create a new goal
 - `GET /pending-goals` - Retrieve pending goals for the current week
-- `POST /goal-completions` - Mark a goal as completed
+- `POST /completions` - Mark a goal as completed
+- `GET /week-summary` - Get a summary of the current week
 
 ---
 
@@ -137,11 +142,12 @@ inorbit/
 │   ├── functions/ # Business logic
 │   │   ├── create-goal.ts
 │   │   ├── get-week-pending-goals.ts
-│   │   └── create-goal-completion.ts
+│   │   ├── create-goal-completion.ts
+│   │   └── get-week-summary.ts
 │   ├── http/      # HTTP server and route handlers
+│   │   ├── routes/ # Separate route handlers
 │   └── env.ts     # Environment variable configuration
 ├── .migrations/   # Database migration files
-├── logs.txt      # Application logs
 ├── drizzle.config.ts # Drizzle ORM configuration
 ├── biome.json    # Biome linting and formatting config
 └── docker-compose.yml
