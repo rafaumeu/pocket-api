@@ -1,6 +1,6 @@
 import z from 'zod'
 
-import { createGoalCompletion } from '../../functions/create-goal-completion'
+import { createGoalCompletion } from '../../functions/create-completion'
 import type { FastifyPluginAsyncZod } from 'fastify-type-provider-zod'
 
 export const createCompletionRoute: FastifyPluginAsyncZod = async app => {
@@ -8,9 +8,14 @@ export const createCompletionRoute: FastifyPluginAsyncZod = async app => {
     '/completions',
     {
       schema: {
+        tags: ['goals'],
+        description: 'Complete a goal',
         body: z.object({
           goalId: z.string(),
         }),
+        response: {
+          201: z.object({}),
+        },
       },
     },
     async (request, reply) => {
@@ -18,6 +23,7 @@ export const createCompletionRoute: FastifyPluginAsyncZod = async app => {
       await createGoalCompletion({
         goalId,
       })
+      return reply.status(201).send()
     }
   )
 }
