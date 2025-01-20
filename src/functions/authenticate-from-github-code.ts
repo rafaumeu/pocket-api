@@ -5,6 +5,7 @@ import {
   getUserFromAccessToken,
 } from '../modules/github-oauth'
 import { db } from '../db'
+import { authenticateUser } from '../modules/auth'
 interface AuthenticateFromGithubCodeRequest {
   code: string
 }
@@ -17,7 +18,7 @@ export async function authenticateFromGithubCode({
   const result = await db
     .select()
     .from(users)
-    .where(eq(users.externalAccountId, users.id))
+    .where(eq(users.externalAccountId, githubUser.id))
   const userAlreadyExists = result.length > 0
   let userId: string | null
   if (userAlreadyExists) {
@@ -34,4 +35,6 @@ export async function authenticateFromGithubCode({
       .returning()
     userId = insertedUser.id
   }
+  const token = await authenticateUser(userId)
+  return { token }
 }

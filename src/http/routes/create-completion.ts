@@ -14,7 +14,7 @@ export const createCompletionRoute: FastifyPluginAsyncZod = async app => {
           goalId: z.string(),
         }),
         response: {
-          201: z.object({}),
+          201: z.null(),
         },
       },
     },

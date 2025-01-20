@@ -13,9 +13,10 @@ export const createGoalRoute: FastifyPluginAsyncZod = async app => {
         body: z.object({
           title: z.string(),
           desiredWeeklyFrequency: z.number().int().min(1).max(7),
+          userId: z.string(),
         }),
         response: {
-          201: z.object({}),
+          201: z.null(),
         },
       },
     },
