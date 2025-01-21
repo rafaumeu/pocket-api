@@ -10,8 +10,7 @@ A modern TypeScript habit tracking API powered by Fastify and PostgreSQL.
 [![GitHub issues](https://img.shields.io/github/issues/rafaumeu/pocket-api?style=for-the-badge&logo=github)](https://github.com/rafaumeu/pocket-api/issues)
 [![GitHub last commit](https://img.shields.io/github/last-commit/rafaumeu/pocket-api?style=for-the-badge&logo=github)](https://github.com/rafaumeu/pocket-api/commits/main)
 [![CI Status](https://img.shields.io/github/actions/workflow/status/rafaumeu/pocket-api/ci.yml?style=for-the-badge&logo=github-actions&logoColor=white)](https://github.com/rafaumeu/pocket-api/actions)
-[![Test Coverage](https://img.shields.io/codecov/c/github/rafaumeu/pocket-api?style=for-the-badge&logo=codecov&logoColor=white)](https://codecov.io/gh/rafaumeu/pocket-api)
-
+[![codecov](https://codecov.io/gh/rafaumeu/pocket-api/branch/v2/graph/badge.svg?token=ISQBZ49D6E)](https://codecov.io/gh/rafaumeu/pocket-api)
 ---
 
 ## 📖 Table of Contents
