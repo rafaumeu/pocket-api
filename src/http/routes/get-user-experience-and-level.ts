@@ -13,6 +13,7 @@ export const getUserExperienceAndLevelRoute: FastifyPluginAsyncZod =
         schema: {
           tags: ['users', 'gamification'],
           description: 'get user experience and level',
+          operationId: 'getUserExperienceAndLevel',
           response: {
             200: z.object({
               profile: z.object({
