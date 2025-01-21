@@ -21,7 +21,7 @@ describe('create goal completion', () => {
     })
   })
 })
-it('should not be able to complete a goal mor times them it expects', async () => {
+it('should not be able to complete a goal more times them it expects', async () => {
   const user = await makeUser()
   const goal = await makeGoal({ userId: user.id, desiredWeeklyFrequency: 1 })
   await makeGoalCompletion({ goalId: goal.id })

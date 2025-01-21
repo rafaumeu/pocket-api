@@ -8,7 +8,7 @@ export async function makeUser(
   const [row] = await db
     .insert(users)
     .values({
-      name: faker.name.firstName(),
+      name: faker.person.firstName(),
       email: faker.internet.email(),
       avatarUrl: faker.image.avatarGitHub(),
       externalAccountId: faker.number.int({ min: 1, max: 1_000_000 }),
