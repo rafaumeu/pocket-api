@@ -35,16 +35,20 @@ jobs:
 
       - name: Install dependencies
         run: yarn install --frozen-lockfile
+
       - name: Setup .env.test
         run: |
           echo "DATABASE_URL=postgresql://docker:docker@localhost:5432/inorbit_test" >> .env.test
           echo "GITHUB_CLIENT_ID=${{ secrets.GITHUB_CLIENT_ID }}" >> .env.test
           echo "GITHUB_CLIENT_SECRET=${{ secrets.GITHUB_CLIENT_SECRET }}" >> .env.test
           echo "JWT_SECRET=${{ secrets.JWT_SECRET }}" >> .env.test
-      - name: Run tests
-        run: yarn test
+
+      - name: Run tests with coverage
+        run: yarn test:coverage
 
       - name: Upload coverage reports to Codecov
         uses: codecov/codecov-action@v5
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
+          files: ./coverage/coverage-final.json,./coverage/lcov.info
+          fail_ci_if_error: true
