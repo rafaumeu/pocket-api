@@ -36,16 +36,8 @@ jobs:
       - name: Install dependencies
         run: yarn install --frozen-lockfile
 
-      - name: Setup .env.test
-        run: |
-          echo "DATABASE_URL=postgresql://docker:docker@localhost:5432/inorbit_test" >> .env.test
-          echo "GITHUB_CLIENT_ID=${{ secrets.GITHUB_CLIENT_ID }}" >> .env.test
-          echo "GITHUB_CLIENT_SECRET=${{ secrets.GITHUB_CLIENT_SECRET }}" >> .env.test
-          echo "JWT_SECRET=${{ secrets.JWT_SECRET }}" >> .env.test
-
-      # Adicione este passo antes dos testes
-      - name: Run database migrations
-        run: yarn db:migrate:test
+      - name: Run tests
+        run: yarn test
 
       - name: Run tests with coverage
         run: yarn test:coverage
