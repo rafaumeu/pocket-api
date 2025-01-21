@@ -11,7 +11,7 @@
     "format": "biome format src --write",
     "pretest": "npm run db:migrate:test",
     "pretest:watch": "npm run db:migrate:test",
-    "db:migrate:test": "dotenv -e .env.test -- drizzle-kit push:pg",
+    "db:migrate:test": "dotenv -e .env.test -- drizzle-kit migrate",
     "test": "dotenv -e .env.test -- vitest run",
     "test:watch": "dotenv -e .env.test -- vitest",
     "test:coverage": "dotenv -e .env.test -- vitest run --coverage"
