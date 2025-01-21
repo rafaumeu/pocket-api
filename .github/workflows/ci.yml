@@ -43,6 +43,10 @@ jobs:
           echo "GITHUB_CLIENT_SECRET=${{ secrets.GITHUB_CLIENT_SECRET }}" >> .env.test
           echo "JWT_SECRET=${{ secrets.JWT_SECRET }}" >> .env.test
 
+      # Adicione este passo antes dos testes
+      - name: Run database migrations
+        run: yarn db:migrate:test
+
       - name: Run tests with coverage
         run: yarn test:coverage
 
