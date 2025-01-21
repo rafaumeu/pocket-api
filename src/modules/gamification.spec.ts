@@ -2,6 +2,7 @@ import { expect, test } from 'vitest'
 import {
   calculateExperienceToLevel,
   calculateLevelFromExperience,
+  calculateTotalExperienceForLevel,
 } from './gamification'
 
 test('experience to level', async () => {
@@ -11,6 +12,14 @@ test('experience to level', async () => {
   expect(exp1).toEqual(0)
   expect(exp2).toEqual(26)
   expect(exp4).toEqual(43)
+})
+test('total experience to level ', async () => {
+  const exp1 = calculateTotalExperienceForLevel(1)
+  const exp2 = calculateTotalExperienceForLevel(2)
+  const exp4 = calculateTotalExperienceForLevel(4)
+  expect(exp1).toEqual(0)
+  expect(exp2).toEqual(26)
+  expect(exp4).toEqual(26 + 33 + 43)
 })
 test('level from experience', async () => {
   const level1 = calculateLevelFromExperience(10)
