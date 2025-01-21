@@ -25,20 +25,20 @@ A modern TypeScript backend application powered by Fastify and PostgreSQL.
 
 ### ⚡ Tech Stack
 
-[![TypeScript](https://img.shields.io/github/package-json/dependency-version/rafaumeu/pocket-api/typescript?style=for-the-badge&logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
+[![TypeScript](https://img.shields.io/github/package-json/dependency-version/rafaumeu/pocket-api/dev/typescript?style=for-the-badge&logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
 [![Fastify](https://img.shields.io/github/package-json/dependency-version/rafaumeu/pocket-api/fastify?style=for-the-badge&logo=fastify&logoColor=white)](https://www.fastify.io/)
-[![PostgreSQL](https://img.shields.io/github/package-json/dependency-version/rafaumeu/pocket-api/pg?style=for-the-badge&logo=postgresql&logoColor=white)](https://www.postgresql.org/)
-[![Node.js](https://img.shields.io/node/v/pocket-api?style=for-the-badge&logo=nodedotjs&logoColor=white)](https://nodejs.org/)
+[![PostgreSQL](https://img.shields.io/github/package-json/dependency-version/rafaumeu/pocket-api/postgres?style=for-the-badge&logo=postgresql&logoColor=white)](https://www.postgresql.org/)
+[![Node.js](https://img.shields.io/node/v/pocket-api?style=for-the-badge&logo=nodedotjs&logoColor=white&cacheSeconds=3600)](https://nodejs.org/)
 
 ---
 
 ### 🛠 Development Tools
 
 [![Drizzle ORM](https://img.shields.io/github/package-json/dependency-version/rafaumeu/pocket-api/drizzle-orm?style=for-the-badge&logo=data:image/svg+xml;base64,PHN2Z&label=Drizzle%20ORM)](https://orm.drizzle.team/)
-[![Zod](https://img.shields.io/github/package-json/dependency-version/rafaumeu/pocket-api/zod?style=for-the-badge&logo=zod&logoColor=white)](https://github.com/colinhacks/zod)
+[![Zod](https://img.shields.io/github/package-json/dependency-version/rafaumeu/pocket-api/dev/zod?style=for-the-badge&logo=zod&logoColor=white)](https://github.com/colinhacks/zod)
 [![Vitest](https://img.shields.io/github/package-json/dependency-version/rafaumeu/pocket-api/dev/vitest?style=for-the-badge&logo=vitest&logoColor=white)](https://vitest.dev/)
 [![Day.js](https://img.shields.io/github/package-json/dependency-version/rafaumeu/pocket-api/dayjs?style=for-the-badge&logo=javascript&logoColor=white)](https://day.js.org/)
-[![JWT](https://img.shields.io/github/package-json/dependency-version/rafaumeu/pocket-api/@fastify/jwt?style=for-the-badge&logo=jsonwebtokens&logoColor=white&label=JWT)](https://github.com/fastify/fastify-jwt)
+[![JWT](https://img.shields.io/github/package-json/dependency-version/rafaumeu/pocket-api/dep/@fastify/jwt?style=for-the-badge&logo=jsonwebtokens&logoColor=white&label=JWT)](https://github.com/fastify/fastify-jwt)
 
 ---
 
