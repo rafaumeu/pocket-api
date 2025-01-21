@@ -4,12 +4,13 @@
 
 # InOrbit
 
-A modern TypeScript backend application powered by Fastify and PostgreSQL.
+A modern TypeScript habit tracking API powered by Fastify and PostgreSQL.
 
 [![GitHub stars](https://img.shields.io/github/stars/rafaumeu/pocket-api?style=for-the-badge&logo=github)](https://github.com/rafaumeu/pocket-api/stargazers)
 [![GitHub issues](https://img.shields.io/github/issues/rafaumeu/pocket-api?style=for-the-badge&logo=github)](https://github.com/rafaumeu/pocket-api/issues)
 [![GitHub last commit](https://img.shields.io/github/last-commit/rafaumeu/pocket-api?style=for-the-badge&logo=github)](https://github.com/rafaumeu/pocket-api/commits/main)
 [![CI Status](https://img.shields.io/github/actions/workflow/status/rafaumeu/pocket-api/ci.yml?style=for-the-badge&logo=github-actions&logoColor=white)](https://github.com/rafaumeu/pocket-api/actions)
+[![Test Coverage](https://img.shields.io/codecov/c/github/rafaumeu/pocket-api?style=for-the-badge&logo=codecov&logoColor=white)](https://codecov.io/gh/rafaumeu/pocket-api)
 
 ---
 
@@ -28,30 +29,21 @@ A modern TypeScript backend application powered by Fastify and PostgreSQL.
 [![TypeScript](https://img.shields.io/github/package-json/dependency-version/rafaumeu/pocket-api/dev/typescript?style=for-the-badge&logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
 [![Fastify](https://img.shields.io/github/package-json/dependency-version/rafaumeu/pocket-api/fastify?style=for-the-badge&logo=fastify&logoColor=white)](https://www.fastify.io/)
 [![PostgreSQL](https://img.shields.io/github/package-json/dependency-version/rafaumeu/pocket-api/postgres?style=for-the-badge&logo=postgresql&logoColor=white)](https://www.postgresql.org/)
-[![Node.js](https://img.shields.io/node/v/pocket-api?style=for-the-badge&logo=nodedotjs&logoColor=white&cacheSeconds=3600)](https://nodejs.org/)
-
+![Node.js](https://img.shields.io/badge/Node.js->=16.0.0-339933?style=for-the-badge&logo=nodedotjs&logoColor=white)
 ---
 
 ### 🛠 Development Tools
 
 [![Drizzle ORM](https://img.shields.io/github/package-json/dependency-version/rafaumeu/pocket-api/drizzle-orm?style=for-the-badge&logo=data:image/svg+xml;base64,PHN2Z&label=Drizzle%20ORM)](https://orm.drizzle.team/)
 [![Zod](https://img.shields.io/github/package-json/dependency-version/rafaumeu/pocket-api/dev/zod?style=for-the-badge&logo=zod&logoColor=white)](https://github.com/colinhacks/zod)
-[![Vitest](https://img.shields.io/github/package-json/dependency-version/rafaumeu/pocket-api/dev/vitest?style=for-the-badge&logo=vitest&logoColor=white)](https://vitest.dev/)
+![Vitest](https://img.shields.io/badge/Vitest-^3.0.2-6E9F18?style=for-the-badge&logo=vitest&logoColor=white)
 [![Day.js](https://img.shields.io/github/package-json/dependency-version/rafaumeu/pocket-api/dayjs?style=for-the-badge&logo=javascript&logoColor=white)](https://day.js.org/)
-[![JWT](https://img.shields.io/github/package-json/dependency-version/rafaumeu/pocket-api/dep/@fastify/jwt?style=for-the-badge&logo=jsonwebtokens&logoColor=white&label=JWT)](https://github.com/fastify/fastify-jwt)
-
+![JWT](https://img.shields.io/badge/JWT-^9.0.3-000000?style=for-the-badge&logo=jsonwebtokens&logoColor=white)
 ---
-
-### 📊 Stats
-
-[![Test Coverage](https://img.shields.io/codecov/c/github/rafaumeu/pocket-api?style=for-the-badge&logo=codecov&logoColor=white)](https://codecov.io/gh/rafaumeu/pocket-api)
-[![License](https://img.shields.io/github/license/rafaumeu/pocket-api?style=for-the-badge)](https://github.com/rafaumeu/pocket-api/blob/main/LICENSE)
-
-[![Code Size](https://img.shields.io/github/languages/code-size/rafaumeu/pocket-api?style=for-the-badge&logo=github&logoColor=white)](https://github.com/rafaumeu/pocket-api)
 
 </div>
 
-## 🚀 Features
+### 🚀 Features
 
 - **Modern TypeScript**: Built with the latest TypeScript features for type-safe development
 - **High Performance**: Powered by Fastify, one of the fastest web frameworks for Node.js
@@ -70,7 +62,7 @@ A modern TypeScript backend application powered by Fastify and PostgreSQL.
 - **Gamification System**: Experience points and leveling system for user engagement
 - **Comprehensive Testing**: Full test suite using Vitest with factories and utilities
 - **Swagger Documentation**: Interactive API documentation with OpenAPI/Swagger
-- **CI/CD Pipeline**: GitHub Actions workflow for continuous integration
+- **CI/CD Pipeline**: GitHub Actions workflow for continuous integration and code coverage reporting
 
 ---
 
@@ -118,10 +110,10 @@ cp .env.example .env
 yarn migration:run
 ```
 
-6. Run tests (optional):
+6. Run database seed (optional):
 
 ```bash
-yarn test
+yarn seed
 ```
 
 7. Start the development server:
@@ -136,65 +128,55 @@ yarn dev
 
 ### Authentication
 
-- `POST /authenticate/github` - Authenticate user with GitHub OAuth code
-
-### Profile
-
+- `POST /auth/github` - Authenticate user with GitHub OAuth code
 - `GET /profile` - Get authenticated user's profile
 
 ### Goals
 
 - `POST /goals` - Create a new goal
-- `GET /pending-goals` - Retrieve pending goals for the current week
+- `GET /pending-goals` - Get pending goals for the current week
 - `POST /completions` - Mark a goal as completed
-- `GET /week-summary` - Get a summary of the current week
+- `GET /summary` - Get weekly goal summary
 
 ### Gamification
 
-- `GET /level` - Get user's current level and experience
+- `GET /profile/gamification` - Get user's level and experience points
 
 ---
 
 ## 🏗️ Project Structure
 
 ```
-inorbit/
-├── .github/        # GitHub Actions workflows
-├── assets/         # Project-related assets
-├── src/
-│   ├── db/        # Database configuration and schemas
-│   │   ├── index.ts  # Database initialization
-│   │   ├── schema.ts # Database schema definitions
-│   │   └── seed.ts   # Database seeding functionality
-│   ├── functions/ # Business logic
-│   │   ├── authenticate-from-github-code.ts
-│   │   ├── create-goal.ts
-│   │   ├── get-week-pending-goals.ts
-│   │   ├── create-completion.ts
-│   │   ├── get-week-summary.ts
-│   │   └── get-user-level-and-experience.ts
-│   ├── http/      # HTTP server and route handlers
-│   │   ├── routes/ # Separate route handlers
-│   ├── modules/   # Shared modules
-│   │   ├── auth.ts
-│   │   └── gamification.ts
-│   └── env.ts     # Environment variable configuration
-├── tests/         # Test utilities and factories
-├── .migrations/   # Database migration files
-├── drizzle.config.ts # Drizzle ORM configuration
-├── biome.json    # Biome linting and formatting config
-└── docker-compose.yml
+src/
+├── db/          # Database configuration and schemas
+│   ├── index.ts  # Database initialization
+│   ├── schema.ts # Database schema definitions
+│   └── seed.ts   # Database seeding functionality
+├── functions/   # Business logic
+│   ├── authenticate-from-github-code.ts
+│   ├── create-goal.ts
+│   ├── get-week-pending-goals.ts
+│   ├── create-completion.ts
+│   ├── get-week-summary.ts
+│   └── get-user-level-and-experience.ts
+├── http/       # HTTP server and routes
+│   ├── routes/ # Route handlers
+├── modules/    # Shared modules
+│   ├── auth.ts
+│   └── gamification.ts
+└── env.ts      # Environment configuration
 ```
 
 ---
 
 ## 🧪 Running Tests
 
-The project uses Vitest for testing and includes factories for generating test data.
-
 ```bash
 # Run all tests
 yarn test
+
+# Run tests with coverage
+yarn test:coverage
 
 # Run tests in watch mode
 yarn test:watch
@@ -206,7 +188,7 @@ yarn test:watch
 
 API documentation is available at `http://localhost:3000/docs` when running the development server. The documentation includes:
 
-- Request/response schemas generated from Zod definitions
+- Request/response schemas
 - Authentication requirements
 - Example requests and responses
 - Interactive Swagger UI for testing endpoints
