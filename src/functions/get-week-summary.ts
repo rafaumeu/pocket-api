@@ -4,10 +4,14 @@ import { db } from '../db'
 import dayjs from 'dayjs'
 interface GetWeekSummaryRequest {
   userId: string
+  weekStartsAt: Date
 }
-export async function getWeekSummary({ userId }: GetWeekSummaryRequest) {
-  const firstDayOfWeek = dayjs().startOf('week').toDate()
-  const lastDayOfWeek = dayjs().endOf('week').toDate()
+export async function getWeekSummary({
+  userId,
+  weekStartsAt,
+}: GetWeekSummaryRequest) {
+  const firstDayOfWeek = weekStartsAt
+  const lastDayOfWeek = dayjs(weekStartsAt).endOf('week').toDate()
   const goalsCreateUptoWeek = db.$with('goals_created_up_to_week').as(
     db
       .select({
@@ -70,7 +74,7 @@ export async function getWeekSummary({ userId }: GetWeekSummaryRequest) {
   const result = await db
     .with(goalsCreateUptoWeek, goalCompletedInWeek, goalsCompletedByWeekDay)
     .select({
-      complete: sql`(SELECT COUNT(*) FROM ${goalCompletedInWeek})`.mapWith(
+      completed: sql`(SELECT COUNT(*) FROM ${goalCompletedInWeek})`.mapWith(
         Number
       ),
       total:

@@ -1,9 +1,10 @@
-import type { FastifyPluginAsync } from 'fastify'
+import type { FastifyPluginAsyncZod } from 'fastify-type-provider-zod'
 import { getWeekSummary } from '../../functions/get-week-summary'
 import { z } from 'zod'
 import { authenticateUserHook } from '../../hooks/authenticate-user'
+import dayjs from 'dayjs'
 
-export const getWeekSummaryRoute: FastifyPluginAsync = async app => {
+export const getWeekSummaryRoute: FastifyPluginAsyncZod = async app => {
   app.get(
     '/summary',
     {
@@ -11,31 +12,36 @@ export const getWeekSummaryRoute: FastifyPluginAsync = async app => {
       schema: {
         tags: ['goals'],
         description: 'Get week summary',
+        querystring: z.object({
+          weekStartsAt: z.coerce
+            .date()
+            .optional()
+            .default(dayjs().startOf('week').toDate()),
+        }),
         response: {
           200: z.object({
-            summary: z.array(
-              z.object({
-                completed: z.number(),
-                total: z.number(),
-                goalsPerDay: z.record(
-                  z.string(),
-                  z.array(
-                    z.object({
-                      id: z.string(),
-                      title: z.string(),
-                      completedAt: z.string(),
-                    })
-                  )
-                ),
-              })
-            ),
+            summary: z.object({
+              completed: z.number(),
+              total: z.number(),
+              goalsPerDay: z.record(
+                z.string(),
+                z.array(
+                  z.object({
+                    id: z.string(),
+                    title: z.string(),
+                    completedAt: z.string(),
+                  })
+                )
+              ),
+            }),
           }),
         },
       },
     },
     async request => {
       const userId = request.user.sub
-      const { summary } = await getWeekSummary({ userId })
+      const { weekStartsAt } = request.query
+      const { summary } = await getWeekSummary({ userId, weekStartsAt })
       return { summary }
     }
   )
