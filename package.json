@@ -23,6 +23,7 @@
     "@biomejs/biome": "^1.9.4",
     "@faker-js/faker": "^9.4.0",
     "@types/node": "^22.10.7",
+    "@vitest/coverage-v8": "3.0.3",
     "drizzle-kit": "^0.30.2",
     "exact": "^1.0.1",
     "tsx": "^4.19.2",
