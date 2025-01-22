@@ -50,10 +50,10 @@ app.register(authenticateFromGithubRoute)
 app.register(getProfileRoute)
 app.register(getUserExperienceAndLevelRoute)
 
-app.listen({ port: 3000 }).then(() => {
+app.listen({ port: 3333 }).then(() => {
   console.log(`
-    Server listening on port 3000
-    acesse em: http://localhost:3000
+    Server listening on port 3333
+    acesse em: http://localhost:3333
   `)
 })
 
